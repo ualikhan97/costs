@@ -1,60 +1,57 @@
-import classes from './App.module.css'
-import { useState } from 'react';
+import NewCost from "./components/NewCost/NewCost";
+import Costs from "./components/Costs/Costs";
+import "./index.css";
+import { useState } from "react";
 
-function Modal(props) {
-  return (
-    <div className='modal'>
-      <p>{props.text}</p>
-      <button className='btn btn--alt' onClick={props.onClose}>
-        Отмена
-      </button>
-      <button className='btn' onClick={props.onClose}>
-        Ок
-      </button>
-    </div>
-  );
-}
+const INITIAL_COSTS = [
+  {
+    id: "c1",
+    date: new Date(2022, 9, 19),
+    description: "Холодильник",
+    costAmount: 999.99,
+  },
+
+  {
+    id: "c2",
+    date: new Date(2022, 7, 29),
+    description: "Плита",
+    costAmount: 699.99,
+  },
+
+  {
+    id: "c3",
+    date: new Date(2022, 6, 25),
+    description: "Телевизор",
+    costAmount: 1299.99,
+  },
+  {
+    id: "c4",
+    date: new Date(2022, 8, 25),
+    description: "MacBook",
+    costAmount: 2399,
+  },
+];
+
+const App = () => {
+
+  const [costs, setCosts] = useState(INITIAL_COSTS)
 
 
-function Backdrop(props) {
-  return <div className='backdrop' onClick={props.onClick} />;
-}
 
+  const addCostHandler = (cost) => {
+    setCosts(prevCosts => {
+      return [cost, ...prevCosts]
+    })
 
-function Todo(props) {
-  const [showModal, setShowModal] = useState();
-
-  function showModalHandler() {
-    setShowModal(true);
-  }
-
-  function closeModalHandler() {
-    setShowModal(false);
-  }
-
-  return (
-    <div className='card'>
-      <h2>{props.text}</h2>
-      <div className='actions'>
-        <button className='btn' onClick={showModalHandler}>
-          Удалить
-        </button>
-      </div>
-      {showModal && <Backdrop onClick={closeModalHandler} />}
-      {showModal && <Modal text='Вы уверены?' onClose={closeModalHandler} />}
-    </div>
-  );
-}
-
-function App() {
-
+    console.log("App Component");
+  };
 
   return (
     <div>
-        <h1>Мои задачи</h1>
-        <Todo text='изучить реакт' />
+      <NewCost onAddCost={addCostHandler} />
+      <Costs costs={costs} />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
