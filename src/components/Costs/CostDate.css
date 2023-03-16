@@ -4,7 +4,8 @@
   width: 5.5rem;
   height: 5.5rem;
   border: 1px solid #ececec;
-  background-color: hsl(207, 52%, 34%);
+  /* background-color: hsl(207, 52%, 34%); */
+  background-color: #1e71a1;
   color: #fefae1;
   border-radius: 12px;
   align-items: center;

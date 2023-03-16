@@ -18,9 +18,9 @@
 }
 
 .diagram-bar__fill {
-  background-color: #bd8025;
+  background-color: #f4cd91;
   width: 100%;
-  transition: all 0.3s ease-out;
+  transition: all 0.7s ease-out;
 }
 
 .diagram-bar__label {

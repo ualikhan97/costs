@@ -33,17 +33,13 @@ const INITIAL_COSTS = [
 ];
 
 const App = () => {
-
-  const [costs, setCosts] = useState(INITIAL_COSTS)
-
-
+  const [costs, setCosts] = useState(INITIAL_COSTS);
 
   const addCostHandler = (cost) => {
-    setCosts(prevCosts => {
-      return [cost, ...prevCosts]
-    })
-
-    console.log("App Component");
+    setCosts((prevCosts) => {
+      console.log(cost);
+      return [cost, ...prevCosts];
+    });
   };
 
   return (
