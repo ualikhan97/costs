@@ -23,7 +23,7 @@ const CostsDiagram = (props) => {
 
   return (
     <div>
-      <Diagram dataSets={diagramDataSets} />;
+      <Diagram dataSets={diagramDataSets} />
     </div>
   );
 };

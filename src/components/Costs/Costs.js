@@ -1,4 +1,4 @@
-import "./Costs.css"
+import "./Costs.css";
 import Card from "../Ui/Card";
 import CostsFilter from "./CostsFilter";
 import { useState } from "react";
@@ -6,33 +6,26 @@ import CostsList from "./CostsList";
 import CostsDiagram from "./CostsDiagram";
 
 const Costs = (props) => {
+  const [selectedYear, setSelectedYear] = useState("2021");
 
-   const [selectedYear, setSelectedYear] = useState('2021')
+  const onChangeYear = (year) => {
+    setSelectedYear(year);
 
-    const onChangeYear = (year) => {
-        setSelectedYear(year)
+    console.log(year);
+  };
 
-        console.log(year)
-    }
+  const filteredCosts = props.costs.filter((cost) => {
+    return cost.date.getFullYear().toString() === selectedYear;
+  });
 
-    const filteredCosts = props.costs.filter(cost => {
-      return cost.date.getFullYear().toString() === selectedYear
-    })
+  return (
+    <div>
+      <Card className="costs">
+        <CostsFilter selectedYear={selectedYear} onChangeYear={onChangeYear} />
+        <CostsDiagram costs={filteredCosts} />
+        <CostsList costs={filteredCosts} />
 
-
-
-    return (
-      <div>
-        <Card className="costs">
-          <CostsFilter
-            selectedYear={selectedYear}
-            onChangeYear={onChangeYear}
-          />
-          <CostsDiagram costs={filteredCosts}/>
-          <CostsList costs={filteredCosts}/>
-
-
-          {/* {filteredCosts.length === 0 && <p>В этом году расходов нет</p>}
+        {/* {filteredCosts.length === 0 && <p>В этом году расходов нет</p>}
           { filteredCosts.length > 0 &&
            filteredCosts.map((cost) => (
             <CostItem
@@ -43,7 +36,7 @@ const Costs = (props) => {
             />
           ))} */}
 
-          {/* <CostItem
+        {/* <CostItem
             date={props.costs[0].date}
             description={props.costs[0].description}
             costAmount={props.costs[0].costAmount}
@@ -58,10 +51,9 @@ const Costs = (props) => {
             description={props.costs[2].description}
             costAmount={props.costs[2].costAmount}
           /> */}
-        </Card>
-      </div>
-    );
-}
+      </Card>
+    </div>
+  );
+};
 
-
-export default Costs
+export default Costs;

@@ -10,7 +10,7 @@ const CostItem = (props) => {
 
         <div className="cost-item__description">
           <h2>{props.description}</h2>
-          <div className="cost-item__price">{props.costAmount}</div>
+          <div className="cost-item__price">{props.costAmount}$</div>
         </div>
       </Card>
     </li>
